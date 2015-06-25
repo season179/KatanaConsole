@@ -14,7 +14,20 @@ namespace KatanaConsole
     {
         public void Configuration(IAppBuilder app)
         {
+            app.UseMyMiddleware();
+            app.UseMyOtherMiddleware();
+        }
+    }
+
+    public static class AppBuilderExtensions
+    {
+        public static void UseMyMiddleware(this IAppBuilder app)
+        {
             app.Use<MyMiddlewareComponent>();
+        }
+
+        public static void UseMyOtherMiddleware(this IAppBuilder app)
+        {
             app.Use<MyOtherMiddlewareComponent>();
         }
     }
