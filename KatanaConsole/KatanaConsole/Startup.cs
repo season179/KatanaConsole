@@ -14,16 +14,16 @@ namespace KatanaConsole
     {
         public void Configuration(IAppBuilder app)
         {
-            app.UseMyMiddleware();
+            app.UseMyMiddleware("This is the new greeting for MyMiddleware!");
             app.UseMyOtherMiddleware();
         }
     }
 
     public static class AppBuilderExtensions
     {
-        public static void UseMyMiddleware(this IAppBuilder app)
+        public static void UseMyMiddleware(this IAppBuilder app, string greetingOption)
         {
-            app.Use<MyMiddlewareComponent>();
+            app.Use<MyMiddlewareComponent>(greetingOption);
         }
 
         public static void UseMyOtherMiddleware(this IAppBuilder app)

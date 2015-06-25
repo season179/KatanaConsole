@@ -15,14 +15,22 @@ namespace KatanaConsole
     public class MyMiddlewareComponent
     {
         AppFunc _next;
-        public MyMiddlewareComponent(AppFunc next)
+
+        // Add a member to hold the greeting:
+        string _greeting;
+
+        public MyMiddlewareComponent(AppFunc next, string greeting)
         {
             _next = next;
+            _greeting = greeting;
         }
+
         public async Task Invoke(IDictionary<string, object> environment)
         {
             IOwinContext context = new OwinContext(environment);
-            await context.Response.WriteAsync("<h1>Hello from My First Middleware</h1>");
+
+            // Insert the _greeting into the display text:
+            await context.Response.WriteAsync(string.Format("<h1>{0}</h1>", _greeting));
             await _next.Invoke(environment);
         }
     }
