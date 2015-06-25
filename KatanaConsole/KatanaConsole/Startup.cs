@@ -8,6 +8,7 @@ using Owin;
 namespace KatanaConsole
 {
     using System.IO;
+    using Microsoft.Owin;
     using AppFunc = Func<IDictionary<string, object>, Task>;
     public class Startup
     {
@@ -24,13 +25,8 @@ namespace KatanaConsole
         {
             AppFunc appFunc = async (IDictionary<string, object> environment) =>
                 {
-                    // Do something with the incoming request:
-                    var response = environment["owin.ResponseBody"] as Stream;
-                    using (var writer = new StreamWriter(response))
-                    {
-                        await writer.WriteAsync("<h1>Hello from my first middleware</h1>");
-                    }
-                    // Call the next Middleware in the chain:
+                    IOwinContext context = new OwinContext(environment);
+                    await context.Response.WriteAsync("<h1>Hello from My First Middleware</h1>");
                     await next.Invoke(environment);
                 };
             return appFunc;
@@ -40,13 +36,8 @@ namespace KatanaConsole
         {
             AppFunc appFunc = async (IDictionary<string, object> environment) =>
                 {
-                    // Do something with the incoming request:
-                    var response = environment["owin.ResponseBody"] as Stream;
-                    using (var writer = new StreamWriter(response))
-                    {
-                        await writer.WriteAsync("<h1>Hello from my second middleware</h1>");
-                    }
-                    // Call the next Middleware in the chain:
+                    IOwinContext context = new OwinContext(environment);
+                    await context.Response.WriteAsync("<h1>Hello from My Other Middleware</h1>");
                     await next.Invoke(environment);
                 };
             return appFunc;
