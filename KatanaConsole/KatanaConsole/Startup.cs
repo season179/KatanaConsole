@@ -14,16 +14,22 @@ namespace KatanaConsole
     {
         public void Configuration(IAppBuilder app)
         {
-            app.UseMyMiddleware("This is the new greeting for MyMiddleware!");
+            // Set up the configuration options:
+            var options = new MyMiddlewareConfigOptions("Greetings!", "John");
+            options.IncludeDate = true;
+
+            // Pass options along in call to extension method:
+            app.UseMyMiddleware(options);
             app.UseMyOtherMiddleware();
         }
     }
 
     public static class AppBuilderExtensions
     {
-        public static void UseMyMiddleware(this IAppBuilder app, string greetingOption)
+        public static void UseMyMiddleware(this IAppBuilder app,
+        MyMiddlewareConfigOptions configOptions)
         {
-            app.Use<MyMiddlewareComponent>(greetingOption);
+            app.Use<MyMiddlewareComponent>(configOptions.GetGreeting());
         }
 
         public static void UseMyOtherMiddleware(this IAppBuilder app)
