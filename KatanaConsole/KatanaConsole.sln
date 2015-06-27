@@ -4,6 +4,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KatanaConsole", "KatanaConsole\KatanaConsole.csproj", "{25578032-AF97-47AD-9147-03AD8CCDD676}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5114F159-BC67-4E80-BE17-9D36DA40101A} = {5114F159-BC67-4E80-BE17-9D36DA40101A}
+		{4CA44D84-3DDE-4444-801E-9B7BA72323E3} = {4CA44D84-3DDE-4444-801E-9B7BA72323E3}
+		{2F008EEE-9376-450C-A443-43D270CDC3F5} = {2F008EEE-9376-450C-A443-43D270CDC3F5}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SillyAuthentication", "SillyAuthentication\SillyAuthentication.csproj", "{2F008EEE-9376-450C-A443-43D270CDC3F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SillyLogging", "SillyLogging\SillyLogging.csproj", "{4CA44D84-3DDE-4444-801E-9B7BA72323E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMidddleware", "MyMidddleware\MyMidddleware.csproj", "{5114F159-BC67-4E80-BE17-9D36DA40101A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +26,18 @@ Global
 		{25578032-AF97-47AD-9147-03AD8CCDD676}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25578032-AF97-47AD-9147-03AD8CCDD676}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25578032-AF97-47AD-9147-03AD8CCDD676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F008EEE-9376-450C-A443-43D270CDC3F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F008EEE-9376-450C-A443-43D270CDC3F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F008EEE-9376-450C-A443-43D270CDC3F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F008EEE-9376-450C-A443-43D270CDC3F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CA44D84-3DDE-4444-801E-9B7BA72323E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CA44D84-3DDE-4444-801E-9B7BA72323E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CA44D84-3DDE-4444-801E-9B7BA72323E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CA44D84-3DDE-4444-801E-9B7BA72323E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5114F159-BC67-4E80-BE17-9D36DA40101A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5114F159-BC67-4E80-BE17-9D36DA40101A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5114F159-BC67-4E80-BE17-9D36DA40101A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5114F159-BC67-4E80-BE17-9D36DA40101A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

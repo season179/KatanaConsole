@@ -4,49 +4,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Owin;
+using Owin;
 
-namespace KatanaConsole
+namespace MyMidddleware
 {
     using AppFunc = Func<IDictionary<string, object>, Task>;
-    class Middlewares
-    {
-    }
 
-    public class MyMiddlewareComponent
+    public class MyMiddleware
     {
+    
         AppFunc _next;
 
         // Add a member to hold the greeting:
-        string _greeting;
+        //string _greeting;
+        MyMiddlewareConfigOptions _configOptions;
 
-        public MyMiddlewareComponent(AppFunc next, string greeting)
+        public MyMiddleware(AppFunc next, MyMiddlewareConfigOptions configOptions)
         {
             _next = next;
-            _greeting = greeting;
+            _configOptions = configOptions;
         }
 
         public async Task Invoke(IDictionary<string, object> environment)
         {
+            // If there is no next component, a 404 Not Found will be written as the response code here:
+            await _next.Invoke(environment);
+
             IOwinContext context = new OwinContext(environment);
 
             // Insert the _greeting into the display text:
-            await context.Response.WriteAsync(string.Format("<h1>{0}</h1>", _greeting));
-            await _next.Invoke(environment);
-        }
-    }
+            await context.Response.WriteAsync(string.Format("<h1>{0}</h1>", _configOptions.GetGreeting()));
 
-    public class MyOtherMiddlewareComponent
-    {
-        AppFunc _next;
-        public MyOtherMiddlewareComponent(AppFunc next)
-        {
-            _next = next;
-        }
-        public async Task Invoke(IDictionary<string, object> environment)
-        {
-            IOwinContext context = new OwinContext(environment);
-            await context.Response.WriteAsync("<h1>Hello from My Other Middleware</h1>");
-            await _next.Invoke(environment);
+            // Update the response code to 200 OK:
+            context.Response.StatusCode = 200;
+            context.Response.ReasonPhrase = "OK";
         }
     }
 
@@ -74,6 +65,15 @@ namespace KatanaConsole
                 DateText = string.Format(" on {0}", Date.ToShortDateString());
             }
             return string.Format(_greetingTextFormat, GreetingText, Greeter, DateText);
+        }
+    }
+
+    public static class AppBuilderExtensions
+    {
+        public static void UseMyMiddleware(this IAppBuilder app,
+        MyMiddlewareConfigOptions configOptions)
+        {
+            app.Use<MyMiddleware>(configOptions);
         }
     }
 }

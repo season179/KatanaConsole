@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{25578032-AF97-47AD-9147-03AD8CCDD676}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{5114F159-BC67-4E80-BE17-9D36DA40101A}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KatanaConsole</RootNamespace>
-    <AssemblyName>KatanaConsole</AssemblyName>
+    <RootNamespace>MyMidddleware</RootNamespace>
+    <AssemblyName>MyMidddleware</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -53,27 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="MyMiddleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MyMidddleware\MyMidddleware.csproj">
-      <Project>{5114f159-bc67-4e80-be17-9d36da40101a}</Project>
-      <Name>MyMidddleware</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SillyAuthentication\SillyAuthentication.csproj">
-      <Project>{2f008eee-9376-450c-a443-43d270cdc3f5}</Project>
-      <Name>SillyAuthentication</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SillyLogging\SillyLogging.csproj">
-      <Project>{4ca44d84-3dde-4444-801e-9b7ba72323e3}</Project>
-      <Name>SillyLogging</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
